@@ -19,11 +19,15 @@ $ open https://github.com/google/googletest
 
 ## Tutorial
 
+Set up environment variables
+
 ```ShellSession
 # Setting global variables and stream editors
 $ export GITHUB_USERNAME=thedraftaccount
 $ alias gsed=sed # for *-nix system
 ```
+
+Get in workspace directory
 
 ```ShellSession
 # Working directory organization
@@ -31,6 +35,7 @@ $ cd ${GITHUB_USERNAME}/workspace
 $ pushd .
 $ source scripts/activate
 ```
+Get new repo on the basis of the previous one
 
 ```ShellSession
 # Cloning of existing remote repo
@@ -47,6 +52,8 @@ $ cd projects/lab05
 $ git remote remove origin
 $ git remote add origin https://github.com/${GITHUB_USERNAME}/lab05
 ```
+
+Add GTest third-party submodule
 
 ```ShellSession
 # Create a new directory
@@ -87,6 +94,8 @@ $ git commit -m"added gtest framework" # Add changes
  create mode 160000 third-party/gtest
 ```
 
+Add BUILD_TESTS option to cmake config
+
 ```ShellSession
 # Editing of "CMakeLists"
 $ gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
@@ -104,6 +113,7 @@ if(BUILD_TESTS)
 endif()
 EOF
 ```
+Create and add test source file
 
 ```ShellSession
 # Creating a repo for tests and adding test1.cpp programm
@@ -130,6 +140,8 @@ TEST(Print, InFileStream)
 }
 EOF
 ```
+
+Cmake configure and build and then run tests
 
 ```ShellSession
 # Building with test included
@@ -199,6 +211,8 @@ Test project /home/johnsnow/thedraftaccount/workspace/projects/lab05/_build
 Total Test time (real) =   0.02 sec
 ```
 
+Run check executable manually and cmake tests in auto mode
+
 ```ShellSession
 # Checking
 $ _build/check
@@ -251,6 +265,8 @@ Total Test time (real) =   0.00 sec
 
 ```
 
+Update README.md
+
 ```ShellSession
 # Writing into README.md
 $ gsed -i 's/lab04/lab05/g' README.md
@@ -261,11 +277,15 @@ $ gsed -i '/cmake --build _build --target install/a\
 ' .travis.yml
 ```
 
+Enable travis
+
 ```ShellSession
 # Linter launch
 $ travis lint
 Hooray, .travis.yml looks valid :)
 ```
+
+Commit and add all changes
 
 ```ShellSession
 # Commiting of all changes and pushing into remote repo
@@ -329,6 +349,7 @@ $ git commit -m"added tests"
 
 $ git push origin master
 ```
+Travis authorization
 
 ```ShellSession
 # Travis authorization and project adding
@@ -337,6 +358,8 @@ $ travis enable
 Detected repository as thedraftaccount/lab05, is this correct? |yes| yes    
 thedraftaccount/lab05: enabled :)
 ```
+
+Save artifacts
 
 ```ShellSession
 # Weird repo
